@@ -27,6 +27,7 @@ header h1 {
   margin-bottom: 20px;
   text-align: center;
   color: #f4511e;
+  transition: 0.6s linear;
 }
 .correcto {
   background-color: rgb(211, 249, 187);
