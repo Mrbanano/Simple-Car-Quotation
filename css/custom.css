@@ -15,6 +15,7 @@ header {
   text-transform: uppercase;
   font-weight: bold;
   color: white;
+  transition: 0.6s ease;
 }
 header h1 {
   font-size: 22px;
@@ -27,9 +28,9 @@ header h1 {
   margin-bottom: 20px;
   text-align: center;
   color: #f4511e;
-  transition: 0.6s linear;
+  transition: 0.6s ease;
 }
-.correcto {
+.ok {
   background-color: rgb(211, 249, 187);
   border: 1px solid rgb(50, 167, 0);
   padding: 10px;
@@ -75,4 +76,17 @@ header h1 {
   padding: 10px;
   text-transform: uppercase;
   font-weight: bold;
+}
+#cargando {
+  transition: 0.6s ease;
+}
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 800px) {
+  #contenido {
+    width: 90vw;
+    margin-top: 1em;
+  }
+  .contenido-formulario {
+    padding: 2em;
+  }
 }
