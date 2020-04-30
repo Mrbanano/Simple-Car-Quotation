@@ -38,11 +38,10 @@ Secure.prototype.quotationSecure = function (information) {
 
   return quantity;
 };
-
 //control ui
 function Interfase() {}
 //show Error
-Interfase.prototype.showError = function (message, type) {
+Interfase.prototype.showMessage = function (message, type) {
   const div = document.createElement("div");
   const before = document.querySelector(".form-group");
 
@@ -73,17 +72,22 @@ Interfase.prototype.showResult = function (secure, quantity) {
       brand = "Europeo";
       break;
   }
-
   const div = document.createElement("div");
   div.innerHTML = `
-    <p></p>
-    <p> Tu resumen :</p>
+    <p class="header"> Tu resumen :</p>
     <p> Marca: ${brand}</p>
     <p> Año: ${secure.year}</p>
     <p> Tipo: ${secure.type}</p>
-    <p> total: ${quantity}</p>
+    <hr>
+    <p><strong> total:${quantity}</strong></p>
   `;
-  result.appendChild(div);
+
+  const spinner = document.querySelector("#cargando img");
+  spinner.style.display = "block";
+  setTimeout(function () {
+    spinner.style.display = "none";
+    result.appendChild(div);
+  }, 3000);
 };
 //EventListener
 const form = document.getElementById("cotizar-seguro");
@@ -106,12 +110,17 @@ form.addEventListener("submit", function (e) {
 
   //check input no empty
   if (brandSelected === "" || yearSelected === "" || type === "") {
-    interfase.showError(
+    interfase.showMessage(
       "Faltan datos, revisa el formulario y prueba de nuevo",
       "error"
     );
   } else {
     //clear div
+    const result = document.querySelector("#resultado div");
+    if (result != null) {
+      result.remove();
+    }
+    interfase.showMessage("Cotizando...", "ok");
     //quotation
     const secure = new Secure(brandSelected, yearSelected, type);
     const quantity = secure.quotationSecure(secure);
